@@ -129,6 +129,13 @@
 }
 </style>
 <script type="text/javascript">
+window.onpageshow = function(event) {
+    colsole.log("Event persisted = " + event.persisted);
+    if (event.persisted) {
+        window.location.reload() 
+    }
+};
+
   console.log("begin script pg 2");
   // seems water tight to identify Safari on Mobile devices
   var isSafari = /iP(ad|od|hone)/i.test(window.navigator.userAgent) && /WebKit/i.test(window.navigator.userAgent)
@@ -136,8 +143,6 @@
 
   var unloadEvt = isSafari ? "pagehide" : "beforeunload";
   var onloadEvt = isSafari ? "pageshow" : "load";
-
-	  window.onunload = function(){console.log("Window on unload hack !")};
 	
   //load
   window.addEventListener(onloadEvt, function (event) {
