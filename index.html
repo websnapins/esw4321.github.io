@@ -55,8 +55,10 @@ console.log (" Event persisted = " + event.persisted);
     }
 };
 	
-window.addEventListener(unloadEvt, function (event){
-    var storageIframe = document.getElementById("storage_iframe").contentWindow;
+	
+var storageIframe = document.getElementById("storage_iframe").contentWindow;
+
+storageIframe.onbeforeunload = function(event) {
     if(typeof liveagent != "undefined"){
     storageIframe.storeSessionData("CHASITOR_SERIALIZED_KEY", liveagent.chasitor.serialize());
     storageIframe.storeSessionData("ESW_MINIMIZED_WIDTH", window.sessionStorage.getItem("ESW_MINIMIZED_WIDTH"));
