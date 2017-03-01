@@ -48,6 +48,13 @@ console.log("begin script pg 1");
   var unloadEvt = isSafari ? "pagehide" : "beforeunload";
   var onloadEvt = isSafari ? "pageshow" : "load";
 
+window.onpageshow = function(event) {
+console.log (" Event persisted = " + event.persisted);
+ if (event.persisted) {
+        window.location.reload() 
+    }
+};
+	
 window.addEventListener(unloadEvt, function (event){
     var storageIframe = document.getElementById("storage_iframe").contentWindow;
     if(typeof liveagent != "undefined"){
