@@ -247,7 +247,6 @@ window.onpageshow = function(event) {
     function waitForLiveAgent() {
       if (typeof liveagent !== "undefined" && liveagent.isRunning()) {
    	    console.log("[waitForLiveAgent] Liveagent Available");
-		  liveagent.chasitor.reinitializeSession();
         initializeWorkaround();
       }
       else {
