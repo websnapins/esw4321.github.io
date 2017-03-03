@@ -161,7 +161,7 @@ window.location.reload();
     //unload
     window.addEventListener(unloadEvt, function (event) {
 
-      console.log("[window.onBeforeunload]");
+      console.log("[window.onBeforeunload] , stop unload : " + stopUnload );
 
       if (typeof liveagent !== "undefined" && !liveagent.chasitor.isChatEstablished() && stopUnload === false) {
         console.log("[window.onBeforeunload] isChatEstablished? No, cancelling chat");
