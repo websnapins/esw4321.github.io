@@ -92,6 +92,11 @@ window.addEventListener(unloadEvt, function (event) {
    storageIframe.storeSessionData("LA_ESW_MINIMIZED_TEXT", window.sessionStorage.getItem('LA_ESW_MINIMIZED_TEXT'));
 });
 
+// reload on popstate fix
+window.addEventListener("popstate", function() {
+        if(internalApi.getSafariType() === "mobile") document.location.reload();
+    }, false);
+
 //storage loaded
 window.addEventListener('message', function (event) {
    // Check for specific event: 'storage_iframe_initialize'
