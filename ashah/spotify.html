@@ -137,6 +137,10 @@ stopUnload = true;
 window.location.reload();
 }
 };
+	
+window.addEventListener("popstate", function() {
+        if(internalApi.getSafariType() === "mobile") document.location.reload();
+    }, false);
 
   console.log("begin script pg 2");
   // seems water tight to identify Safari on Mobile devices
