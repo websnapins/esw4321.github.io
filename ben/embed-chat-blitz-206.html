@@ -100,6 +100,9 @@ window.addEventListener(unloadEvt, function (event) {
    console.log("SPOTIFY: liveagent type: " + typeof liveagent); 
    if(typeof liveagent !== "undefined"){
       var localChasitorData = liveagent.chasitor.serialize();
+      //not sure exactly why we need this, but its in liveAgentChatWindow.cmp...
+      var isChatEstablished = document.querySelector(“.embeddedServiceLiveAgentChatWindow”) !== undefined
+      localChasitorData['chasitorData']['isChatEstablished'] = isChatEstablished;
       console.log("SPOTIFY: SETTING IFRAME DATA W/POLLCOUNT: " + window.chasitorPollCount(localChasitorData));
       if(isSafari){
          console.log("SPOTIFY: ABOUT TO CALL SAFARI COOKIE WORKAROUND");
