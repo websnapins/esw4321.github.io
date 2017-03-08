@@ -186,10 +186,6 @@ window.addEventListener("popstate", function() {
           storageIframe.storeSessionData("LA_ESW_MINIMIZED", window.sessionStorage.getItem('LA_ESW_MINIMIZED'));
           storageIframe.storeSessionData("LA_ESW_UNREAD_NOTIFS", window.sessionStorage.getItem('LA_ESW_UNREAD_NOTIFS'));
           storageIframe.storeSessionData("LA_ESW_MINIMIZED_TEXT", window.sessionStorage.getItem('LA_ESW_MINIMIZED_TEXT'));
-	  var storageAvailable = isSafari ?
-            storageIframe.localStorage.getItem("CHASITOR_SERIALIZED_KEY") :
-            storageIframe.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY");
-	  console.log("Iframe serialized key : " + storageAvailable);
       }
     });
 
@@ -250,7 +246,9 @@ window.jSONPollCount = function(jsonObj){
           });
 
           console.log("[storageHandler] retrieved from previous session");
-	 var iFrameChasitorStr = storageIframe.getSessionData("CHASITOR_SERIALIZED_KEY");
+	 var iFrameChasitorStr = isSafari ?
+            storageIframe.localStorage.getItem("CHASITOR_SERIALIZED_KEY") :
+            storageIframe.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY");
          var iFramePollCount = window.chasitorPollCount(iFrameChasitorStr);
          var localPollCount = window.getLocalPollCount();
          console.log("SPOTIFY: LOCAL POLL COUNT: " + localPollCount + ", SETTING TO IFRAME POLL COUNT: " +  iFramePollCount);
