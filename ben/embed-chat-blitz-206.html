@@ -148,7 +148,7 @@ window.addEventListener('message', function (event) {
    }
 });
    
-window.safariIphoneStore(chasitorStr){
+window.safariIphoneStore = function(chasitorStr){
    var storageIframe = document.getElementById("storage_iframe").contentWindow;
    //store chasitorData w/o messages and connection separately
    var chasitorObj = JSON.parse(chasitorStr);
@@ -159,7 +159,7 @@ window.safariIphoneStore(chasitorStr){
    storageIframe.createCookie("ESW_CHASITOR_DATA", chasitorDataStr, 1);
 }
    
-window.safariIphoneRead(){
+window.safariIphoneRead = function(){
    var storageIframe = document.getElementById("storage_iframe").contentWindow;
    //get chasitordata and connection from cookies and rebuild
    var connectionStr = storageIframe.readCookie("ESW_CHASITOR_CONNECTION");
