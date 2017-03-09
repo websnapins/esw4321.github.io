@@ -174,7 +174,8 @@ window.addEventListener('message', function (event) {
          }; 
          document.body.appendChild(s);
       } else { 
-         initESW('https://na1-blitz02.soma.salesforce.com');
+         console.log("Right before initialization (path 2), CHASITOR_SERIALIZED_KEY is", window.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY"));
+         initESW('http://jakerouss-wsm1.internal.salesforce.com:57983');
       }
    }
 });
