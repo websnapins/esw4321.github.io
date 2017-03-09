@@ -42,7 +42,7 @@ var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
 //set browser-specific handlers   
 document.domain = 'websnapins.com';
 var unloadEvt = isSafari ? "pagehide" : "beforeunload";
-var onloadEvt = isSafari ? "pageshow" : "load";   
+var onloadEvt = isSafari ? undefined : "load";   
 //load
 var onPageLoad = function (event) {
    var iframe;
@@ -52,7 +52,7 @@ var onPageLoad = function (event) {
    iframe.style.display = 'none';
    document.body.appendChild(iframe);
 };
-window.addEventListener(onloadEvt, onPageLoad);
+if(onloadEvt) window.addEventListener(onloadEvt, onPageLoad);
 //popstate reload fix
 var eswSafariFix = {}
 eswSafariFix['getSafariType'] = function() {
@@ -69,10 +69,13 @@ eswSafariFix['getSafariType'] = function() {
     };
     // Account for Safari cache quirks.
     window.addEventListener("pageshow", function() {
-        if(eswSafariFix.getSafariType() === "desktop" && event.persisted) {
+      if(eswSafariFix.getSafariType() === "desktop") {
+        if(event.persisted) {
           console.log(" - - - - - Triggering refresh... - - - - - ");
           window.location.reload();
-        }
+        } else {
+          onPageLoad();
+      }
     }, false);
    window.addEventListener("popstate", function() {
       if(eswSafariFix.getSafariType() === "mobile") {
