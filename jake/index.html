@@ -145,11 +145,9 @@ window.addEventListener('message', function (event) {
    // Check for specific event: 'storage_iframe_initialize'
    if (event.data == 'storage_iframe_initialized') {
       var storageIframe = document.getElementById("storage_iframe").contentWindow;
-      var iFrameChasitorStr;
+      var iFrameChasitorStr = storageIframe.getSessionData("CHASITOR_SERIALIZED_KEY");
       if(isSafari){
             iFrameChasitorStr = safariIphoneRead();
-      } else {
-        iFrameChasitorStr = storageIframe.getSessionData("CHASITOR_SERIALIZED_KEY");
       }
       console.log("IFrame Initialized", iFrameChasitorStr);
       if (iFrameChasitorStr) {
