@@ -136,6 +136,8 @@ window.addEventListener(unloadEvt, function (event) {
       window.sessionStorage.removeItem("LA_ESW_MINIMIZED");
       window.sessionStorage.removeItem("LA_ESW_UNREAD_NOTIFS");
       window.sessionStorage.removeItem("LA_ESW_MINIMIZED_TEXT");   
+     
+     console.log("Final session storage status:", Object.keys(window.sessionStorage));
    }
 });
 //storage loaded
