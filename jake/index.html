@@ -18,6 +18,9 @@ url('http://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/
   <script type='text/javascript' src='https://service.force.com/lightning/lightning.out.js'></script>
 <script type='text/javascript'>
 window.onerror = function() {};
+  
+console.log("Before anything, CHASITOR_SERIALIZED_KEY is", window.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY"));
+console.log("see also", Object.keys(window.sessionStorage));
 
 window.ESW_LOADED_FROM_IFRAME=false;
    
