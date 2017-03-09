@@ -120,7 +120,6 @@ window.addEventListener(unloadEvt, function (event) {
          storageIframe.storeSessionData("CHASITOR_SERIALIZED_KEY", localChasitorData);
       }
    }else{
-      window.sessionStorage.removeItem("CHASITOR_SERIALIZED_KEY");
       if(storageIframe && storageIframe.removeSessionData){
          storageIframe.removeSessionData("CHASITOR_SERIALIZED_KEY");
       }
@@ -130,6 +129,12 @@ window.addEventListener(unloadEvt, function (event) {
       storageIframe.storeSessionData("LA_ESW_MINIMIZED", window.sessionStorage.getItem('LA_ESW_MINIMIZED'));
       storageIframe.storeSessionData("LA_ESW_UNREAD_NOTIFS", window.sessionStorage.getItem('LA_ESW_UNREAD_NOTIFS'));
       storageIframe.storeSessionData("LA_ESW_MINIMIZED_TEXT", window.sessionStorage.getItem('LA_ESW_MINIMIZED_TEXT'));
+      // Clear session storage in this frame.
+      window.sessionStorage.removeItem("CHASITOR_SERIALIZED_KEY");
+      window.sessionStorage.removeItem("ESW_MINIMIZED_WIDTH");
+      window.sessionStorage.removeItem("LA_ESW_MINIMIZED");
+      window.sessionStorage.removeItem("LA_ESW_UNREAD_NOTIFS");
+      window.sessionStorage.removeItem("LA_ESW_MINIMIZED_TEXT");   
    }
 });
 //storage loaded
