@@ -19,9 +19,6 @@ url('http://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/
 <script type='text/javascript'>
 window.onerror = function() {};
   
-console.log("Before anything, CHASITOR_SERIALIZED_KEY is", window.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY"));
-console.log("see also", Object.keys(window.sessionStorage));
-
 window.ESW_LOADED_FROM_IFRAME=false;
    
 window.addEventListener("beforeunload", function(event){
@@ -128,19 +125,10 @@ window.addEventListener(unloadEvt, function (event) {
       }
    }
    if(storageIframe && storageIframe.removeSessionData){
-      console.log('Clearing old data...');
       storageIframe.storeSessionData("ESW_MINIMIZED_WIDTH", window.sessionStorage.getItem("ESW_MINIMIZED_WIDTH"));
       storageIframe.storeSessionData("LA_ESW_MINIMIZED", window.sessionStorage.getItem('LA_ESW_MINIMIZED'));
       storageIframe.storeSessionData("LA_ESW_UNREAD_NOTIFS", window.sessionStorage.getItem('LA_ESW_UNREAD_NOTIFS'));
       storageIframe.storeSessionData("LA_ESW_MINIMIZED_TEXT", window.sessionStorage.getItem('LA_ESW_MINIMIZED_TEXT'));
-      // Clear session storage in this frame.
-      window.sessionStorage.removeItem("CHASITOR_SERIALIZED_KEY");
-      window.sessionStorage.removeItem("ESW_MINIMIZED_WIDTH");
-      window.sessionStorage.removeItem("LA_ESW_MINIMIZED");
-      window.sessionStorage.removeItem("LA_ESW_UNREAD_NOTIFS");
-      window.sessionStorage.removeItem("LA_ESW_MINIMIZED_TEXT");   
-     
-     console.log("Final session storage status:", Object.keys(window.sessionStorage));
    }
 });
 //storage loaded
@@ -150,6 +138,17 @@ window.addEventListener('message', function (event) {
    if (event.data == 'storage_iframe_initialized') {
       var storageIframe = document.getElementById("storage_iframe").contentWindow;
       var iFrameChasitorStr = storageIframe.getSessionData("CHASITOR_SERIALIZED_KEY");
+     
+      console.log('Clearing old data...');
+      // Clear session storage in this frame.
+      window.sessionStorage.removeItem("CHASITOR_SERIALIZED_KEY");
+      window.sessionStorage.removeItem("ESW_MINIMIZED_WIDTH");
+      window.sessionStorage.removeItem("LA_ESW_MINIMIZED");
+      window.sessionStorage.removeItem("LA_ESW_UNREAD_NOTIFS");
+      window.sessionStorage.removeItem("LA_ESW_MINIMIZED_TEXT");   
+     
+      console.log("Final session storage status:", Object.keys(window.sessionStorage));
+     
       if(isSafari){
             iFrameChasitorStr = safariIphoneRead();
       }
