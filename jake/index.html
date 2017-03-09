@@ -142,6 +142,7 @@ window.addEventListener(unloadEvt, function (event) {
 });
 //storage loaded
 window.addEventListener('message', function (event) {
+           console.log("Before the iframe, CHASITOR_SERIALIZED_KEY is", window.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY"));
    // Check for specific event: 'storage_iframe_initialize'
    if (event.data == 'storage_iframe_initialized') {
       var storageIframe = document.getElementById("storage_iframe").contentWindow;
@@ -165,6 +166,7 @@ window.addEventListener('message', function (event) {
       }
       //this is the normal init stuff
       if (!window.embedded_svc) { 
+         console.log("Right before initialization, CHASITOR_SERIALIZED_KEY is", window.sessionStorage.getItem("CHASITOR_SERIALIZED_KEY"));
          var s = document.createElement('script'); 
          s.setAttribute('src', 'http://jakerouss-wsm1.internal.salesforce.com:57983/embeddedservice/1.0/esw.js'); 
          s.onload = function() { 
