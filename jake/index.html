@@ -125,6 +125,7 @@ window.addEventListener(unloadEvt, function (event) {
       }
    }
    if(storageIframe && storageIframe.removeSessionData){
+      console.log('Clearing old data...');
       storageIframe.storeSessionData("ESW_MINIMIZED_WIDTH", window.sessionStorage.getItem("ESW_MINIMIZED_WIDTH"));
       storageIframe.storeSessionData("LA_ESW_MINIMIZED", window.sessionStorage.getItem('LA_ESW_MINIMIZED'));
       storageIframe.storeSessionData("LA_ESW_UNREAD_NOTIFS", window.sessionStorage.getItem('LA_ESW_UNREAD_NOTIFS'));
