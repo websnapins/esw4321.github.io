@@ -86,6 +86,15 @@ eswSafariFix['getSafariType'] = function() {
 window.addEventListener("popstate", function() {
         if(eswSafariFix.getSafariType() === "mobile") document.location.reload();
     }, false);
+  
+  6]  
+
+  eswSafariFix.isHelpButtonState = function isHelpButtonState() {
+    var elem = document.querySelector(".embeddedServiceLiveAgentHelpButton");
+
+    return elem !== null && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+  };
+  
 //unload
 window.addEventListener(unloadEvt, function (event) {
    console.log("SPOTIFY: UNLOAD EVENT");
@@ -96,7 +105,7 @@ window.addEventListener(unloadEvt, function (event) {
    var storageIframe = document.getElementById("storage_iframe").contentWindow;
    // the iFrame decides based on isSafari wether to use sessionStorage or localStorage
    console.log("SPOTIFY: liveagent type: " + typeof liveagent); 
-   if(typeof liveagent !== "undefined"){
+   if(typeof liveagent !== "undefined" && !eswSafariFix.isHelpButtonState()){
       var localChasitorData = liveagent.chasitor.serialize();
       //not sure exactly why we need this, but its in liveAgentChatWindow.cmp...
       var localChasitorJSON = JSON.parse(localChasitorData);
