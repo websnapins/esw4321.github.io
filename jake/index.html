@@ -149,6 +149,7 @@ window.addEventListener(unloadEvt, function (event) {
       //Prevent any future session stores
       var baseSetItem = window.sessionStorage.setItem;
       window.sessionStorage.setItem = function(key, value) {
+        console.log("ss", key, value);
         if(key !== "CHASITOR_SERIALIZED_KEY") {
           baseSetItem(key, value);
         }
