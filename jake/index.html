@@ -36,10 +36,6 @@ window.addEventListener("load", function(event){
    console.log("SPOTIFY: WINDOWEVENT: LOAD");
 });
    
-window.addEventListener("popstate", function(event){
-   console.log("SPOTIFY: WINDOWEVENT: POPSTATE");
-});
-   
 //got this from stack overflow.  YMMV
 var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
                navigator.userAgent && !navigator.userAgent.match('CriOS');
@@ -86,12 +82,12 @@ eswSafariFix['getSafariType'] = function() {
           window.location.reload();
         }
     }, false);
-window.addEventListener("popstate", function() {
+/*window.addEventListener("popstate", function() {
         if(eswSafariFix.getSafariType() === "mobile") {
           console.log(" - - - - - Triggering refresh... - - - - - ");
           document.location.reload();
         }
-    }, false);
+    }, false);*/
   
   eswSafariFix.isHelpButtonState = function isHelpButtonState() {
     var elem = document.querySelector(".embeddedServiceLiveAgentHelpButton");
