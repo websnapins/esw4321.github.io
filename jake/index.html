@@ -103,6 +103,7 @@ window.addEventListener(unloadEvt, function (event) {
    var storageIframe = document.getElementById("storage_iframe").contentWindow;
    // the iFrame decides based on isSafari wether to use sessionStorage or localStorage
    console.log("SPOTIFY: liveagent type: " + typeof liveagent); 
+   console.log("HELP BUTTON STATE", eswSafariFix.isHelpButtonState());
    if(typeof liveagent !== "undefined" && !eswSafariFix.isHelpButtonState()){
       var localChasitorData = liveagent.chasitor.serialize();
       //not sure exactly why we need this, but its in liveAgentChatWindow.cmp...
