@@ -53,15 +53,6 @@ var onPageLoad = function (event) {
    document.body.appendChild(iframe);
 };
 window.addEventListener(onloadEvt, onPageLoad);
-//For back-forward cache
-if(isSafari){
-   window.addEventListener("popstate", function(event){
-      console.log("SPOTIFY: WINDOWEVENT: POPSTATE");
-      if(event.state === "ESW_STATE_KEY" + document.location){
-         onPageLoad(event);
-      }
-   });
-}
 //popstate reload fix
 var eswSafariFix = {}
 eswSafariFix['getSafariType'] = function() {
@@ -83,12 +74,12 @@ eswSafariFix['getSafariType'] = function() {
           window.location.reload();
         }
     }, false);
-/*window.addEventListener("popstate", function() {
-        if(eswSafariFix.getSafariType() === "mobile") {
-          console.log(" - - - - - Triggering refresh... - - - - - ");
-          document.location.reload();
-        }
-    }, false);*/
+   window.addEventListener("popstate", function() {
+      if(eswSafariFix.getSafariType() === "mobile") {
+        console.log(" - - - - - Triggering refresh... - - - - - ");
+        document.location.reload();
+      }
+    }, false);
   
   eswSafariFix.isHelpButtonState = function isHelpButtonState() {
     var elem = document.querySelector(".embeddedServiceLiveAgentHelpButton");
