@@ -74,7 +74,7 @@ eswSafariFix['getSafariType'] = function() {
           console.log(" - - - - - Page Show - Triggering refresh... - - - - - ");
           window.location.reload();
         }
-      } else {
+      } else if(eswSafariFix.getSafariType() === "mobile") {
         console.log("Triggering onPageLoad");
         onPageLoad();
       }
