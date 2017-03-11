@@ -100,7 +100,7 @@ window.addEventListener(unloadEvt, function (event) {
       
       localChasitorData = JSON.stringify(localChasitorJSON);
       console.log("SUB: SETTING IFRAME DATA W/POLLCOUNT: " + window.chasitorPollCount(localChasitorData));
-      if(eswSafariFix.getSafariType() === "mobile"){
+      if(eswSafariFix.getSafariType() !== "none"){
          console.log("SUB: ABOUT TO CALL SAFARI COOKIE WORKAROUND");
          safariIphoneStore(localChasitorJSON);
       }else{
@@ -130,7 +130,7 @@ window.addEventListener('message', function (event) {
    if (event.data == 'storage_iframe_initialized') {
       eswStorageIframe = document.getElementById("storage_iframe").contentWindow;
       var iFrameChasitorStr = eswStorageIframe.getSessionData("CHASITOR_SERIALIZED_KEY");
-      if(eswSafariFix.getSafariType() === "mobile"){
+      if(eswSafariFix.getSafariType() !== "none"){
             iFrameChasitorStr = safariIphoneRead();
       }
       console.log("SUB: JUST READ CHASITOR IFRAME DATA vvvvvvvvvvvv");
