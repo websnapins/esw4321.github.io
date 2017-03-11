@@ -2,12 +2,84 @@
 <head>
 <script>
 document.domain="websnapins.com";
-var domainIframe=document.getElementById("domainIframe").contentWindow;
-var nonDomainIframe=document.getElementById("domainIframe").contentWindow;
-//todo: page onload (make sure storage is ready);
+var domainIframe=document.getElementById("domainIframe").contentWindow;  
+var nonDomainIframe=document.getElementById("nonDomainIframe").contentWindow;
+var unloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pagehide" : "beforeunload";
+var onloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pageshow" : "load";  
+  
+//browser detection
+var eswSafariFix = {}
+eswSafariFix['getSafariType'] = function() {
+        var userAgent = navigator.userAgent.toLowerCase();
+        if(userAgent.indexOf("chrome") === -1 && userAgent.indexOf("safari") !== -1) {
+            if(userAgent.indexOf("mobile") === -1) {
+                return "desktop";
+            } else {
+                return "mobile";
+            }
+        }
+        
+        return "none";
+    };
+    // Account for Safari cache quirks.
+    window.addEventListener("pageshow", function() {
+        if(eswSafariFix.getSafariType() === "desktop" && event.persisted) window.location.reload();
+    }, false);
+window.addEventListener("popstate", function() {
+        if(eswSafariFix.getSafariType() === "mobile") document.location.reload();
+    }, false);
+  
+  function createCookie(name,value,minutes) {
+    var expires = "";
+    if (minutes) {
+      var date = new Date();
+      date.setTime(date.getTime() + (minutes*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
 
-//dodo: page unload
-</script>
+  function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
+  
+  function eraseCookie(name) {
+    createCookie(name,"",-1);
+  }
+ 
+//storage loaded
+window.addEventListener('message', function (event) {
+   // Check for specific event: 'storage_iframe_initialize'
+   if (event.data == 'storage_iframe_initialized') {
+     setInput("pageCookie1", readCookie("pageCookie1"));
+     setInput("pageCookie2", readCookie("pageCookie2"));
+     setInput("pageSession1", sessionStorage.getItem("pageSession1"));
+     setInput("pageSession2", sessionStorage.getItem("pageSession2"));
+     setInput("pageLocal1", sessionStorage.getItem("pageLocal1"));
+     setInput("pageLocal2", sessionStorage.getItem("pageLocal2"));
+     
+     setInput("dIframeCookie1", domainIframe.readCookie("dIframeCookie1"));
+     setInput("dIframeCookie2", domainIframe.readCookie("dIframeCookie2"));
+     setInput("dIframeSession1", domainIframe.sessionStorage.getItem("dIframeSession1"));
+     setInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
+     setInput("dIframeLocal1", domainIframe.sessionStorage.getItem("dIframeLocal1"));
+     setInput("dIframeLocal2", domainIframe.sessionStorage.getItem("dIframeLocal2"));
+   }
+}
+
+//page unload
+window.addEventListener(unloadEvt, function (event) {
+  var newVal = docuemnt.getElementById("newVal").value;
+  
+}  
+ </script>
 </head>
 <body>
 <iframe style="display:none" id="domainIframe" src="http://www.websnapins.com/spotify-storage-ben.html"></iframe>
