@@ -78,6 +78,19 @@ window.addEventListener('message', function (event) {
      eswSetInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
      eswSetInput("dIframeLocal1", domainIframe.localStorage.getItem("dIframeLocal1"));
      eswSetInput("dIframeLocal2", domainIframe.localStorage.getItem("dIframeLocal2"));
+   }else{
+     var payload = message.data;
+     switch(payload.method) {
+       case 'cookieDataCallback' :
+         eswSetInput("ndIframe" + payload.target, payload.data);
+         break;
+       case 'sessionDataCallback' :
+         eswSetInput("ndIframe" + payload.target, payload.data);
+         break;
+       case 'localDataCallback' :
+         eswSetInput("ndIframe" + payload.target, payload.data);
+         break;
+     }
    }
 });
 
