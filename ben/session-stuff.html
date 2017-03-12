@@ -76,15 +76,34 @@ window.addEventListener('message', function (event) {
 
 //page unload
 window.addEventListener(unloadEvt, function (event) {
-  var newVal = docuemnt.getElementById("newVal").value;
+  createCookie("pageCookie1", getInput("pageCookie1"));
+  createCookie("pageCookie2", getInput("pageCookie2"));
+  sessionStorage.setItem("pageSession1", getInput("pageSession1"));
+  sessionStorage.setItem("pageSession2", getInput("pageSession2"));
+  localStorage.setItem("pageLocal1", getInput("pageLocal1"));
+  localStorage.setItem("pageLocal2", getInput("pageLocal2"));
   
+  domainIframe.createCookie("dIframeCookie1", getInput("dIframeCookie1"));
+  domainIframe.createCookie("dIframeCookie2", getInput("dIframeCookie2"));
+  domainIframe.sessionStorage.setItem("dIframeSession1", getInput("dIframeSession1"));
+  domainIframe.sessionStorage.setItem("dIframeSession2", getInput("dIframeSession2"));
+  domainIframe.localStorage.setItem("dIframeLocal1", getInput("dIframeLocal1"));
+  domainIframe.localStorage.setItem("dIframeLocal2", getInput("dIframeLocal2"));
 }  
+  
+window.setInput(elemId, val){
+  document.getElementById(elemId).value = val;
+}
+  
+window.getInput(elemId){
+  return document.getElementById(elemId).value;
+}
  </script>
 </head>
 <body>
 <iframe style="display:none" id="domainIframe" src="http://www.websnapins.com/spotify-storage-ben.html"></iframe>
 <iframe style="display:none" id="nonDomainIframe" src="http://bendra.github.io/lightning/spotify-storage-ben.html"></iframe>
-  <b>ON PAGE EXIT, SET VALUES TO:</b><input id="newVal" value="2"/>
+  <b>SET VALUES TO:</b><input id="newVal" value="2"/><button type="button" onclick="setAlVals()">Do it</button>
 <p>
 Page Cookie 1:<input id="pageCookie1"/>
 <p>
