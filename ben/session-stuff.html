@@ -58,44 +58,44 @@ window.addEventListener("popstate", function() {
 window.addEventListener('message', function (event) {
    // Check for specific event: 'storage_iframe_initialize'
    if (event.data == 'storage_iframe_initialized') {
-     setInput("pageCookie1", readCookie("pageCookie1"));
-     setInput("pageCookie2", readCookie("pageCookie2"));
-     setInput("pageSession1", sessionStorage.getItem("pageSession1"));
-     setInput("pageSession2", sessionStorage.getItem("pageSession2"));
-     setInput("pageLocal1", sessionStorage.getItem("pageLocal1"));
-     setInput("pageLocal2", sessionStorage.getItem("pageLocal2"));
+     eswSetInput("pageCookie1", readCookie("pageCookie1"));
+     eswSetInput("pageCookie2", readCookie("pageCookie2"));
+     eswSetInput("pageSession1", sessionStorage.getItem("pageSession1"));
+     eswSetInput("pageSession2", sessionStorage.getItem("pageSession2"));
+     eswSetInput("pageLocal1", sessionStorage.getItem("pageLocal1"));
+     eswSetInput("pageLocal2", sessionStorage.getItem("pageLocal2"));
      
-     setInput("dIframeCookie1", domainIframe.readCookie("dIframeCookie1"));
-     setInput("dIframeCookie2", domainIframe.readCookie("dIframeCookie2"));
-     setInput("dIframeSession1", domainIframe.sessionStorage.getItem("dIframeSession1"));
-     setInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
-     setInput("dIframeLocal1", domainIframe.sessionStorage.getItem("dIframeLocal1"));
-     setInput("dIframeLocal2", domainIframe.sessionStorage.getItem("dIframeLocal2"));
+     eswSetInput("dIframeCookie1", domainIframe.readCookie("dIframeCookie1"));
+     eswSetInput("dIframeCookie2", domainIframe.readCookie("dIframeCookie2"));
+     eswSetInput("dIframeSession1", domainIframe.sessionStorage.getItem("dIframeSession1"));
+     eswSetInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
+     eswSetInput("dIframeLocal1", domainIframe.sessionStorage.getItem("dIframeLocal1"));
+     eswSetInput("dIframeLocal2", domainIframe.sessionStorage.getItem("dIframeLocal2"));
    }
 });
 
 //page unload
 window.addEventListener(unloadEvt, function (event) {
-  createCookie("pageCookie1", getInput("pageCookie1"));
-  createCookie("pageCookie2", getInput("pageCookie2"));
-  sessionStorage.setItem("pageSession1", getInput("pageSession1"));
-  sessionStorage.setItem("pageSession2", getInput("pageSession2"));
-  localStorage.setItem("pageLocal1", getInput("pageLocal1"));
-  localStorage.setItem("pageLocal2", getInput("pageLocal2"));
+  createCookie("pageCookie1", eswGetInput("pageCookie1"));
+  createCookie("pageCookie2", eswGetInput("pageCookie2"));
+  sessionStorage.setItem("pageSession1", eswGetInput("pageSession1"));
+  sessionStorage.setItem("pageSession2", eswGetInput("pageSession2"));
+  localStorage.setItem("pageLocal1", eswGetInput("pageLocal1"));
+  localStorage.setItem("pageLocal2", eswGetInput("pageLocal2"));
   
-  domainIframe.createCookie("dIframeCookie1", getInput("dIframeCookie1"));
-  domainIframe.createCookie("dIframeCookie2", getInput("dIframeCookie2"));
-  domainIframe.sessionStorage.setItem("dIframeSession1", getInput("dIframeSession1"));
-  domainIframe.sessionStorage.setItem("dIframeSession2", getInput("dIframeSession2"));
-  domainIframe.localStorage.setItem("dIframeLocal1", getInput("dIframeLocal1"));
-  domainIframe.localStorage.setItem("dIframeLocal2", getInput("dIframeLocal2"));
+  domainIframe.createCookie("dIframeCookie1", eswGetInput("dIframeCookie1"));
+  domainIframe.createCookie("dIframeCookie2", eswGetInput("dIframeCookie2"));
+  domainIframe.sessionStorage.setItem("dIframeSession1", eswGetInput("dIframeSession1"));
+  domainIframe.sessionStorage.setItem("dIframeSession2", eswGetInput("dIframeSession2"));
+  domainIframe.localStorage.setItem("dIframeLocal1", eswGetInput("dIframeLocal1"));
+  domainIframe.localStorage.setItem("dIframeLocal2", eswGetInput("dIframeLocal2"));
 });
   
-window.setInput(elemId, val){
+window.eswSetInput = function(elemId, val){
   document.getElementById(elemId).value = val;
 }
   
-window.getInput(elemId){
+window.eswGetInput = function(elemId){
   return document.getElementById(elemId).value;
 }
  </script>
