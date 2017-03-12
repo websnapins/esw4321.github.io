@@ -3,9 +3,6 @@
 <script>
 document.domain="websnapins.com";
 var domainIframe;
-var nonDomainIframe;
-var unloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pagehide" : "beforeunload";
-var onloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pageshow" : "load";  
   
 //browser detection
 var eswSafariFix = {}
@@ -25,6 +22,11 @@ eswSafariFix['getSafariType'] = function() {
     window.addEventListener("pageshow", function() {
         if(eswSafariFix.getSafariType() === "desktop" && event.persisted) window.location.reload();
     }, false);
+  
+var nonDomainIframe;
+var unloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pagehide" : "beforeunload";
+var onloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pageshow" : "load";    
+  
 window.addEventListener("popstate", function() {
         if(eswSafariFix.getSafariType() === "mobile") document.location.reload();
     }, false);
