@@ -69,15 +69,15 @@ window.addEventListener('message', function (event) {
      eswSetInput("pageCookie2", readCookie("pageCookie2"));
      eswSetInput("pageSession1", sessionStorage.getItem("pageSession1"));
      eswSetInput("pageSession2", sessionStorage.getItem("pageSession2"));
-     eswSetInput("pageLocal1", sessionStorage.getItem("pageLocal1"));
-     eswSetInput("pageLocal2", sessionStorage.getItem("pageLocal2"));
+     eswSetInput("pageLocal1", localStorage.getItem("pageLocal1"));
+     eswSetInput("pageLocal2", localStorage.getItem("pageLocal2"));
      
      eswSetInput("dIframeCookie1", domainIframe.readCookie("dIframeCookie1"));
      eswSetInput("dIframeCookie2", domainIframe.readCookie("dIframeCookie2"));
      eswSetInput("dIframeSession1", domainIframe.sessionStorage.getItem("dIframeSession1"));
      eswSetInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
-     eswSetInput("dIframeLocal1", domainIframe.sessionStorage.getItem("dIframeLocal1"));
-     eswSetInput("dIframeLocal2", domainIframe.sessionStorage.getItem("dIframeLocal2"));
+     eswSetInput("dIframeLocal1", localIframe.sessionStorage.getItem("dIframeLocal1"));
+     eswSetInput("dIframeLocal2", localIframe.sessionStorage.getItem("dIframeLocal2"));
    }
 });
 
