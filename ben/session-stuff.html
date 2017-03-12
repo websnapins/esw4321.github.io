@@ -111,6 +111,16 @@ window.addEventListener(unloadEvt, function (event) {
   domainIframe.localStorage.setItem("dIframeLocal2", eswGetInput("dIframeLocal2"));
 });
   
+//store in non-domain iframe
+window.eswStoreInNonDomainIframe = function(){
+  nonDomainIframe.postMessage({ method : "createCookie", key: "ndIframeCookie1", value : document.getElementById("ndIframeCookie1").value});
+  nonDomainIframe.postMessage({ method : "createCookie", key: "ndIframeCookie2", value :  document.getElementById("ndIframeCookie2").value});
+  nonDomainIframe.postMessage({ method : "storeSession", key: "ndIframeSession1", value : document.getElementById("ndIframeSession1").value});
+  nonDomainIframe.postMessage({ method : "storeSession", key: "ndIframeSession2", value :  document.getElementById("ndIframeSession2").value});
+  nonDomainIframe.postMessage({ method : "storeLocal", key: "ndIframeLocal1", value : document.getElementById("ndIframeLocal1").value});
+  nonDomainIframe.postMessage({ method : "storeLocal",key: "ndIframeLocal2", value : document.getElementById("ndIframeLocal2").value});
+}
+  
 window.eswSetInput = function(elemId, val){
   document.getElementById(elemId).value = val;
 }
@@ -160,6 +170,7 @@ Non Domain Iframe Session 2:<input id="ndIframeSession2"/>
 Non Domain Iframe Local 1:<input id="ndIframeLocal1"/>
 <p>
 Non Domain Iframe Local 2:<input id="ndIframeLocal2"/>
-
+<p>
+  <b>STORE NON DOMAIN IFRAME VALUES:</b><button type="button" onclick="eswStoreInNonDomainIframe()">Do it</button>
 </body>
 </html>
