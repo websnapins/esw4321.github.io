@@ -2,8 +2,8 @@
 <head>
 <script>
 document.domain="websnapins.com";
-var domainIframe=document.getElementById("domainIframe").contentWindow;  
-var nonDomainIframe=document.getElementById("nonDomainIframe").contentWindow;
+var domainIframe;
+var nonDomainIframe;
 var unloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pagehide" : "beforeunload";
 var onloadEvt = eswSafariFix.getSafariType() !== 'none' ? "pageshow" : "load";  
   
@@ -53,7 +53,12 @@ window.addEventListener("popstate", function() {
   function eraseCookie(name) {
     createCookie(name,"",-1);
   }
- 
+//page load
+window.addEventListener(onloadEvt, function(){
+  domainIframe=document.getElementById("domainIframe").contentWindow;  
+  nonDomainIframe=document.getElementById("nonDomainIframe").contentWindow;
+}
+
 //storage loaded
 window.addEventListener('message', function (event) {
    // Check for specific event: 'storage_iframe_initialize'
