@@ -78,6 +78,14 @@ window.addEventListener('message', function (event) {
      eswSetInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
      eswSetInput("dIframeLocal1", domainIframe.localStorage.getItem("dIframeLocal1"));
      eswSetInput("dIframeLocal2", domainIframe.localStorage.getItem("dIframeLocal2"));
+     
+     nonDomainIframe.postMessage({ method : "getCookie", key: "ndIframeCookie1", target: "Cookie1"});
+     nonDomainIframe.postMessage({ method : "getCookie", key: "ndIframeCookie1", target: "Cookie2"});
+     nonDomainIframe.postMessage({ method : "getSession", key: "ndIframeSession1", target: "Session1"});
+     nonDomainIframe.postMessage({ method : "getSession", key: "ndIframeSession2", target: "Session2"});
+     nonDomainIframe.postMessage({ method : "getLocal", key: "ndIframeLocal1", target: "Local1"});
+     nonDomainIframe.postMessage({ method : "getLocal", key: "ndIframeLocal2", target: "Local2"});
+
    }else{
      var payload = event.data;
      switch(payload.method) {
