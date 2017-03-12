@@ -79,7 +79,7 @@ window.addEventListener('message', function (event) {
      eswSetInput("dIframeLocal1", domainIframe.localStorage.getItem("dIframeLocal1"));
      eswSetInput("dIframeLocal2", domainIframe.localStorage.getItem("dIframeLocal2"));
    }else{
-     var payload = message.data;
+     var payload = event.data;
      switch(payload.method) {
        case 'cookieDataCallback' :
          eswSetInput("ndIframe" + payload.target, payload.data);
