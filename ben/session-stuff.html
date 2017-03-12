@@ -76,8 +76,8 @@ window.addEventListener('message', function (event) {
      eswSetInput("dIframeCookie2", domainIframe.readCookie("dIframeCookie2"));
      eswSetInput("dIframeSession1", domainIframe.sessionStorage.getItem("dIframeSession1"));
      eswSetInput("dIframeSession2", domainIframe.sessionStorage.getItem("dIframeSession2"));
-     eswSetInput("dIframeLocal1", localIframe.sessionStorage.getItem("dIframeLocal1"));
-     eswSetInput("dIframeLocal2", localIframe.sessionStorage.getItem("dIframeLocal2"));
+     eswSetInput("dIframeLocal1", domainIframe.localStorage.getItem("dIframeLocal1"));
+     eswSetInput("dIframeLocal2", domainIframe.localStorage.getItem("dIframeLocal2"));
    }
 });
 
